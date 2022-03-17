@@ -32,10 +32,10 @@ int main(){
     char** rest_list=malloc(10*sizeof(char *)); 
     for(int i=0;i<10;i++){
         readline(restaurant);
-        rest_list[i]=malloc(sizeof(line));
-        *(rest_list[i])=*(line);
+        rest_list[i]=malloc(strlen(line));
+        for(int j=0;j<(strlen(line));j++)
+            *(rest_list[i]+j)=*(line+j);
         free(line);
-        printf("%s\n",rest_list[i]);
     }
     fclose(restaurant);
     printf("\n\nHello , Meal time\n\nSelect your restaurant\n\n");
