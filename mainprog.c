@@ -1,23 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-char *rest;
+char *line;
 char* rest_list[10];
-char* readline(FILE *restaurant){
-    rest=(char *)calloc(1,sizeof(char));
+char* readline(FILE *file){
+    line=(char *)calloc(1,sizeof(char));
     char chr;
-    fscanf(restaurant,"%c",&chr);
+    fscanf(file,"%c",&chr);
     int i=0;
     while(chr!='\n'&&chr!=EOF){
-        rest[i]=chr;
-        fscanf(restaurant,"%c",&chr);
+        line[i]=chr;
+        fscanf(file,"%c",&chr);
         if(chr!='\n'){
-            rest =(char *)realloc(rest , strlen(rest)+1);
+            line =(char *)realloc(line , strlen(line)+1);
             i++;
         }
     }
-    
-    return rest;
+    return line;
 }
 
 int main(){
@@ -26,7 +25,7 @@ int main(){
     for(int i=0;i<10;i++){
         rest_list[i]=readline(restaurant);
         printf("%s\n",rest_list[i]);
-        free(rest);
+        free(line);
     }
     fclose(restaurant);
 }
