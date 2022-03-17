@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 char *line;
-char* rest_list[10];
 char* readline(FILE *file){
     line=(char *)calloc(1,sizeof(char));
     char chr;
@@ -22,6 +21,7 @@ char* readline(FILE *file){
 int main(){
     FILE *restaurant;
     restaurant =fopen("restaurants.txt","r");
+    char* rest_list[10];
     for(int i=0;i<10;i++){
         rest_list[i]=readline(restaurant);
         printf("%s\n",rest_list[i]);
