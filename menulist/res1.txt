@@ -7,4 +7,4 @@ Khadai Paneer                       : 140 Rs per plate
 Mix Veg                             : 100 Rs per plate
 Soup                                : 80 Rs per bowl
 Burger                              : 30 Rs per item 
-Pizza
+Pizza                               : 249 Rs Medium Size
