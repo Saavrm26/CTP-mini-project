@@ -12,15 +12,33 @@ void readline(FILE *file){
         line[i]=chr;
         fscanf(file,"%c",&chr);
         if(chr!='\n'){
+            char *temp= malloc((i+1)*sizeof(char));
+            for(int j=0;j<i+1;j++){
+                temp[j]=line[j];
+            }
+            free(line);
             i++;
-            line =(char *)realloc(line , i*sizeof(char));   
+            line =(char *)realloc(line , (i+1)*sizeof(char));
+            for(int j=0;j<strlen(temp);j++){
+                line[j]=temp[j];
+            }
+            free(temp);
             if(line==NULL){
                 printf("error");
             }
         }
         else{
+            char *temp= malloc((i+1)*sizeof(char));
+            for(int j=0;j<strlen(line);j++){
+                temp[j]=line[j];
+            }
+            free(line);
             i++;
-            line =(char *)realloc(line , i*sizeof(char));   
+            line =(char *)realloc(line , (i+1)*sizeof(char));   
+            for(int j=0;j<strlen(temp);j++){
+                line[j]=temp[j];
+            }
+            free(temp);
             line[i]='\0';
         }
     }
@@ -37,6 +55,7 @@ int main(){
         for(int j=0;j<(strlen(line));j++)
             *(rest_list[i]+j)=*(line+j);
         free(line);
+        line=NULL;
     }
     fclose(restaurant);
     RESTAURANTS:
