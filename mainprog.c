@@ -49,6 +49,7 @@ int main(){
         for(int i=0;i<10;i++){
             printf("%d. %s\n\n",i+1,rest_list[i]); 
         }
+        _flushall();
         scanf("%d",&restaurant_key);
         FILE *menu;
         MENUS:
@@ -103,6 +104,7 @@ int main(){
         printf("\n\nTotal: %d",total);
         printf("\n\nPress * to go back\n\n");
         int menu_key;
+        _flushall();
         scanf("%d",&menu_key);
         switch ((char)(menu_key))
         {
