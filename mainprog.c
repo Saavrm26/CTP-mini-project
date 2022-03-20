@@ -1,48 +1,33 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-char *line;
+
 int total=0;
-void readline(FILE *file){
-    line=(char *)calloc(1,sizeof(char));
+char *line;
+char* readline(FILE *file){
+    char *ln;
+    ln=(char *)calloc(1,sizeof(char));
     char chr=' ';
     fscanf(file,"%c",&chr);
     int i=0;
     while(chr!='\n'&&chr!=EOF){
-        line[i]=chr;
+        ln[i]=chr;
         fscanf(file,"%c",&chr);
         if(chr!='\n'){
-            char *temp= malloc((i+1)*sizeof(char));
-            for(int j=0;j<i+1;j++){
-                temp[j]=line[j];
-            }
-            free(line);
             i++;
-            line =(char *)realloc(line , (i+1)*sizeof(char));
-            for(int j=0;j<strlen(temp);j++){
-                line[j]=temp[j];
-            }
-            free(temp);
-            if(line==NULL){
+            ln =(char *)realloc(ln , (i+1)*sizeof(char));   
+            if(ln==NULL){
                 printf("error");
             }
         }
         else{
-            char *temp= malloc((i+1)*sizeof(char));
-            for(int j=0;j<strlen(line);j++){
-                temp[j]=line[j];
-            }
-            free(line);
             i++;
-            line =(char *)realloc(line , (i+1)*sizeof(char));   
-            for(int j=0;j<strlen(temp);j++){
-                line[j]=temp[j];
-            }
-            free(temp);
-            line[i]='\0';
+            ln =(char *)realloc(ln , (i+1)*sizeof(char));   
+            ln[i]='\0';
         }
     }
-    // return line;
+    int l=strlen(ln);
+    return ln;
 }
 
 int main(){
@@ -50,20 +35,20 @@ int main(){
     restaurant =fopen("restaurants.txt","r");
     char** rest_list=malloc(10*sizeof(char *)); 
     for(int i=0;i<10;i++){
-        readline(restaurant);
-        rest_list[i]=malloc(strlen(line));
+        line=readline(restaurant);
+        rest_list[i]=malloc((strlen(line)+1)*sizeof(char));
         for(int j=0;j<(strlen(line));j++)
             *(rest_list[i]+j)=*(line+j);
+        *(rest_list[i]+strlen(line))='\0';
         free(line);
-        line=NULL;
     }
     fclose(restaurant);
+    int restaurant_key;
     RESTAURANTS:
         printf("\n\nHello , Meal time\n\nSelect your restaurant\n\n");
         for(int i=0;i<10;i++){
             printf("%d. %s\n\n",i+1,rest_list[i]); 
         }
-        int restaurant_key;
         scanf("%d",&restaurant_key);
         FILE *menu;
         MENUS:
@@ -106,25 +91,27 @@ int main(){
         printf("Select an item\n\n");
         char** menu_list=malloc(10*sizeof(char *)); 
         for(int i=0;i<10;i++){
-            readline(menu);
-            menu_list[i]=malloc(strlen(line));
+            line=readline(menu);
+            menu_list[i]=malloc((strlen(line)+1)*sizeof(char));
             for(int j=0;j<(strlen(line));j++)
                 *(menu_list[i]+j)=*(line+j);
+            *(menu_list[i]+strlen(line))='\0';
             printf("%s\n",menu_list[i]);
             free(line);
         }
         fclose(menu);
         printf("\n\nTotal: %d",total);
-        printf("Press * to go back\n\n");
-        char menu_key;
-        scanf("%c",&menu_key);
-        switch (menu_key)
+        printf("\n\nPress * to go back\n\n");
+        int menu_key;
+        scanf("%d",&menu_key);
+        switch ((char)(menu_key))
         {
         case '*':
-            free(menu_list);
-            goto RESTAURANTS;
-            break;
-        default:
-            break;
+            
+            // break;
         }
+    free(menu_list);
+    // free(&menu_key);
+    // free(&restaurant_key);
+    goto RESTAURANTS;
 }
