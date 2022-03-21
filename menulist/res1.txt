@@ -1,10 +1,10 @@
-Roti                                : 8 
-Chicken Tikka                       : 140 
-Paneer Tikka                        : 70 
-Butter Chicken                      : 180 
-Chilli Paneer                       : 150 
-Khadai Paneer                       : 140 
-Mix Veg                             : 100 
-Soup                                : 80 
-Burger                              : 30  
-Margherita Pizza                               : 249 
+Roti                                :   8/-
+Chicken Tikka                       : 140/- 
+Paneer Tikka                        :  70/-
+Butter Chicken                      : 180/- 
+Chilli Paneer                       : 150/- 
+Khadai Paneer                       : 140/- 
+Mix Veg                             : 100/- 
+Soup                                :  80/-
+Burger                              :  30/- 
+Margherita Pizza                    : 249/- 
