@@ -97,9 +97,9 @@ void print_menu(char **menu_list, int price[], char **suffix)
     }
 }
 
-int get_total(int i, int price[], char food[])
+void get_total(int i, int price[], int amount_array[], char food[])
 {
-    printf("%s Selected\n\nPlease Enter an amount\n\n", food);
+    printf("%s Selected\n\nPlease Enter an amount\n\nCurrent amount %d\n\n", food, amount_array[i - 1]);
     int amount = 0;
     {
         char c;
@@ -114,8 +114,12 @@ int get_total(int i, int price[], char food[])
         } while (c != '\n' && c != EOF);
         amount /= 10;
     }
-    total += amount * (price[i - 1]);
-    return total;
+    amount_array[i-1] = amount;
+    total=0;
+    for (int j= 0; j < 10; j++)
+    {
+        total += price[j] * amount_array[j];
+    }
 }
 
 int main()
@@ -232,14 +236,17 @@ int main()
             free(line);
         }
         fclose(menu);
+        int amount_array[10];
+        for (int i = 0; i < 10; i++)
+            amount_array[i] = 0;
         while (1)
         {
             print_menu(menu_list, price, suffix);
-            printf("\n\nTotal: %d", total);
+            printf("Total: %d", total);
             printf("\n\nPress * to go back\n\n");
             if (total > 0)
             {
-                printf("\n\nPress / to proceed to checkout\n\n");
+                printf("Press / to proceed to checkout\n\n");
             }
             int flag = 0, procced_to_delivery = 0;
             int menu_key = fetch_item();
@@ -247,52 +254,52 @@ int main()
             {
             case 1:
                 system("cls");
-                get_total(1, price, menu_list[0]);
+                get_total(1, price, amount_array, menu_list[0]);
                 system("cls");
                 break;
             case 2:
                 system("cls");
-                get_total(2, price, menu_list[1]);
+                get_total(2, price, amount_array, menu_list[1]);
                 system("cls");
                 break;
             case 3:
                 system("cls");
-                get_total(3, price, menu_list[2]);
+                get_total(3, price, amount_array, menu_list[2]);
                 system("cls");
                 break;
             case 4:
                 system("cls");
-                get_total(4, price, menu_list[3]);
+                get_total(4, price, amount_array, menu_list[3]);
                 system("cls");
                 break;
             case 5:
                 system("cls");
-                get_total(5, price, menu_list[4]);
+                get_total(5, price, amount_array, menu_list[4]);
                 system("cls");
                 break;
             case 6:
                 system("cls");
-                get_total(6, price, menu_list[5]);
+                get_total(6, price, amount_array, menu_list[5]);
                 system("cls");
                 break;
             case 7:
                 system("cls");
-                get_total(7, price, menu_list[6]);
+                get_total(7, price, amount_array, menu_list[6]);
                 system("cls");
                 break;
             case 8:
                 system("cls");
-                get_total(8, price, menu_list[7]);
+                get_total(8, price, amount_array, menu_list[7]);
                 system("cls");
                 break;
             case 9:
                 system("cls");
-                get_total(9, price, menu_list[8]);
+                get_total(9, price, amount_array, menu_list[8]);
                 system("cls");
                 break;
             case 10:
                 system("cls");
-                get_total(10, price, menu_list[9]);
+                get_total(10, price, amount_array, menu_list[9]);
                 system("cls");
                 break;
             case 42:
