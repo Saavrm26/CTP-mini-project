@@ -253,54 +253,54 @@ int main()
             switch (menu_key)
             {
             case 1:
-                system("cls");
+                system("clear");
                 get_total(1, price, amount_array, menu_list[0]);
-                system("cls");
+                system("clear");
                 break;
             case 2:
-                system("cls");
+                system("clear");
                 get_total(2, price, amount_array, menu_list[1]);
-                system("cls");
+                system("clear");
                 break;
             case 3:
-                system("cls");
+                system("clear");
                 get_total(3, price, amount_array, menu_list[2]);
-                system("cls");
+                system("clear");
                 break;
             case 4:
-                system("cls");
+                system("clear");
                 get_total(4, price, amount_array, menu_list[3]);
-                system("cls");
+                system("clear");
                 break;
             case 5:
-                system("cls");
+                system("clear");
                 get_total(5, price, amount_array, menu_list[4]);
-                system("cls");
+                system("clear");
                 break;
             case 6:
-                system("cls");
+                system("clear");
                 get_total(6, price, amount_array, menu_list[5]);
-                system("cls");
+                system("clear");
                 break;
             case 7:
-                system("cls");
+                system("clear");
                 get_total(7, price, amount_array, menu_list[6]);
-                system("cls");
+                system("clear");
                 break;
             case 8:
-                system("cls");
+                system("clear");
                 get_total(8, price, amount_array, menu_list[7]);
-                system("cls");
+                system("clear");
                 break;
             case 9:
-                system("cls");
+                system("clear");
                 get_total(9, price, amount_array, menu_list[8]);
-                system("cls");
+                system("clear");
                 break;
             case 10:
-                system("cls");
+                system("clear");
                 get_total(10, price, amount_array, menu_list[9]);
-                system("cls");
+                system("clear");
                 break;
             case 42:
                 flag = 1;
@@ -312,11 +312,11 @@ int main()
                 {
                 case 47:
                     procced_to_delivery = 1;
-                    system("cls");
+                    system("clear");
                     break;
                 case 35:
                     procced_to_delivery = 0;
-                    system("cls");
+                    system("clear");
                     break;
                 default:
                     break;
@@ -324,11 +324,11 @@ int main()
                 break;
             default:
                 printf("wrong selection , try again\n\n");
-                system("cls");
+                system("clear");
             }
             if (flag)
             {
-                system("cls");
+                system("clear");
                 break;
             }
             if (procced_to_delivery)
@@ -356,7 +356,7 @@ int main()
 
                 if (proceed != '*')
                 {
-                    system("cls");
+                    system("clear");
                     printf("Order Confirmed\n\nYour Total is %d\n\n Your meal will arrive shortly", total);
                     exit(0);
                 }
