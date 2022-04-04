@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 int total = 0;
 char *line;
@@ -100,6 +101,7 @@ void print_menu(char **menu_list, int price[], char **suffix)
 void get_total(int i, int price[], int amount_array[], char food[])
 {
     printf("%s Selected\n\nPlease Enter an amount\n\nCurrent amount %d\n\n", food, amount_array[i - 1]);
+    int flag=0;
     int amount = 0;
     {
         char c;
@@ -108,17 +110,30 @@ void get_total(int i, int price[], int amount_array[], char food[])
             c = getchar();
             if (c != '\n')
             {
-                amount += c - '0';
-                amount *= 10;
+                if('0'<=c&&c<='9'){
+                    amount += c - '0';
+                    amount *= 10;
+                }
+                else{
+                    flag=1;
+                    break;
+                }
             }
         } while (c != '\n' && c != EOF);
         amount /= 10;
     }
-    amount_array[i-1] = amount;
-    total=0;
-    for (int j= 0; j < 10; j++)
-    {
-        total += price[j] * amount_array[j];
+    if(flag==0){
+        amount_array[i-1] = amount;
+        total=0;
+        for (int j= 0; j < 10; j++)
+        {
+            total += price[j] * amount_array[j];
+        }
+    }
+    else{
+        printf("Wrong Values, enter integers only!\n");
+        sleep(3);
+        system("clear");
     }
 }
 
@@ -175,7 +190,11 @@ int main()
             menu = fopen("./menulist/res10.txt", "r");
             break;
         default:
-            return 0;
+            printf("Wrong Choice!\n");
+            printf("Please select a correct choice.\n");
+            sleep(3);
+            system("clear");
+            continue;
         }
         printf("%s\n\n", rest_list[restaurant_key - 1]);
         printf("Select an item\n\n");
@@ -324,6 +343,7 @@ int main()
                 break;
             default:
                 printf("wrong selection , try again\n\n");
+                // sleep(3);
                 system("clear");
             }
             if (flag)
